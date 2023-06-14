@@ -2,52 +2,63 @@ package ru.netology.SergQA.radio;
 
 public class Radio {
 
-    public int currentRadioStation;
-    public int currentVolume;
+    private int currentRadioStation;
+    private int currentVolume;
 
-    public void switchTheNextStation() {
-        if (currentRadioStation <= 9) {
-            currentRadioStation++;
-        }
-        if (currentRadioStation > 9) {
-            currentRadioStation = 0;
-        }
+    public int getCurrentRadioStation() {
+        return currentRadioStation;
     }
 
-    public void switchThePrevStation() {
-        if (currentRadioStation <= 9) {
-            currentRadioStation--;
-        } else {
-            currentRadioStation = 0;
-        }
-        if (currentRadioStation < 0) {
-            currentRadioStation = 9;
-        }
+    public int getCurrentVolume() {
+        return currentVolume;
     }
 
     public void setCurrentRadioStation(int newCurrentRadioStation) {
+        if (newCurrentRadioStation < 0) {
+            return;
+        }
         if (newCurrentRadioStation > 9) {
             return;
         }
         currentRadioStation = newCurrentRadioStation;
     }
 
-    public void increaseVolume() {
-        if (currentVolume < 100) {
-            currentVolume++;
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < 0) {
+            return;
+        }
+        if (newCurrentVolume > 100) {
+            return;
+        }
+        currentVolume = newCurrentVolume;
+    }
+
+    public void switchToTheNextStation() {
+        if (currentRadioStation != 9) {
+            currentRadioStation++;
         } else {
-            currentVolume = 100;
+            currentRadioStation = 0;
+        }
+    }
+
+    public void switchToPrevStation() {
+        if (currentRadioStation != 0) {
+            currentRadioStation--;
+        } else {
+            currentRadioStation = 9;
+        }
+
+    }
+
+    public void increaseVolume() {
+        if (currentVolume != 100) {
+            currentVolume++;
         }
     }
 
     public void decreaseVolume() {
-        if (currentVolume <= 100) {
+        if (currentVolume != 0) {
             currentVolume--;
-        } else {
-            currentVolume = 100;
-        }
-        if (currentVolume < 0) {
-            currentVolume = 0;
         }
     }
 
